@@ -15,18 +15,22 @@ module Authlogic
       # Configuration for the cookie feature set.
       module Config
         # The name of the cookie or the key in the cookies hash. Be sure and use a unique name. If you have multiple sessions and they use the same cookie it will cause problems.
-        # Also, if a id is set it will be inserted into the beginning of the string. Exmaple:
+        # Also, if a id is set it will be inserted into the beginning of the string. Example:
         #
         #   session = UserSession.new
         #   session.cookie_key => "user_credentials"
         #   
-        #   session = UserSession.new(:super_high_secret)
-        #   session.cookie_key => "super_high_secret_user_credentials"
+        #   session = BackOfficeUserSession.new
+        #   session.cookie_key => "back_office_user_credentials"
+        #   
+        #   session = SomeClass.new
+        #   session.cookie_key => "user_credentials"
         #
-        # * <tt>Default:</tt> "#{guessed_klass_name.underscore}_credentials"
+        # * <tt>Default:</tt> "#{(guessed_klass_name || klass.name).send(:underscore)}_credentials"
         # * <tt>Accepts:</tt> String
         def cookie_key(value = nil)
-          rw_config(:cookie_key, value, "#{guessed_klass_name.underscore}_credentials")
+          key = (guessed_klass_name || klass.name).send(:underscore)
+          rw_config(:cookie_key, value, "#{key}_credentials")
         end
         alias_method :cookie_key=, :cookie_key
         

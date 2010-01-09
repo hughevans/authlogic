@@ -14,8 +14,8 @@ module SessionTest
       def test_default_cookie_key
         assert_equal "user_credentials", UserSession.cookie_key
         assert_equal "back_office_user_credentials", BackOfficeUserSession.cookie_key
-        assert_equal "login_credentials", Login.cookie_key
-        assert_equal "session_credentials", Session.cookie_key
+        assert_equal "user_credentials", Login.cookie_key
+        assert_equal "user_credentials", Session.cookie_key
       end
     
       def test_remember_me

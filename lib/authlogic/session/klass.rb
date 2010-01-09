@@ -43,7 +43,8 @@ module Authlogic
         
         # The string of the model name class guessed from the actual session class name.
         def guessed_klass_name
-          name.split(/Session$/).first || name
+          guessed_name = name.scan(/^(.*)+(?=Session$)/).to_s
+          guessed_name == '' ? nil : guessed_name
         end
       end
       
