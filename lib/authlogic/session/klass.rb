@@ -43,8 +43,7 @@ module Authlogic
         
         # The string of the model name class guessed from the actual session class name.
         def guessed_klass_name
-          guessed_name = name.scan(/(.*)Session/)[0]
-          guessed_name[0] if guessed_name
+          name.split(/Session$/).first || name
         end
       end
       

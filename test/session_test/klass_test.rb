@@ -24,6 +24,8 @@ module SessionTest
       def test_guessed_klass_name
         assert_equal "User", UserSession.guessed_klass_name
         assert_equal "BackOfficeUser", BackOfficeUserSession.guessed_klass_name
+        assert_equal "Login", Login.guessed_klass_name
+        assert_equal "Session", Session.guessed_klass_name
       end
     end
     
